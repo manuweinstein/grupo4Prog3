@@ -4,33 +4,33 @@ import ListaCard from "../../Components/ListaCard/ListaCard";
 
 let apiKey = '5ea8a9872dea100ef148d0562094a5b4'
 
-class Movies extends Component {
+class Series extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movies: [],
+            series: [],
             loader: true,
             page: 1,
             inputValue: '',
-            moviesFiltradas: []
+            seriesFiltradas: []
         }
     }
 
     componentDidMount() {
         console.log(this.props);
 
-        fetch(`https://api.themoviedb.org/3/movie/${this.props.match.params.tipo}?api_key=${apiKey}`)
+        fetch(`https://api.themoviedb.org/3/tv/${this.props.match.params.tipo}?api_key=${apiKey}`)
             .then(res => res.json())
             .then(data => {
-                this.setState({ movies: data.results, loader: false })
+                this.setState({ series: data.results, loader: false })
             })
     }
 
     cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/${this.props.match.params.tipo}?api_key=${apiKey}&page=${this.state.page + 1}`)
+        fetch(`https://api.themoviedb.org/3/tv/${this.props.match.params.tipo}?api_key=${apiKey}&page=${this.state.page + 1}`)
             .then(res => res.json())
             .then(data => {
-                this.setState({ movies: this.state.movies.concat(data.results), page: this.state.page + 1 })
+                this.setState({ series: this.state.series.concat(data.results), page: this.state.page + 1 })
             })
     }
 
@@ -39,22 +39,22 @@ class Movies extends Component {
 
         this.setState({ inputValue: e.target.value })
 
-        let moviesFiltradas = this.state.movies.filter(unaPeli => {
-            return unaPeli.title.toLowerCase().includes(e.target.value.toLowerCase())
+        let seriesFiltradas = this.state.series.filter(unaSerie => {
+            return unaSerie.name.toLowerCase().includes(e.target.value.toLowerCase())
         })
 
-        console.log(moviesFiltradas);
+        console.log(seriesFiltradas);
 
 
-        this.setState({ moviesFiltradas: moviesFiltradas })
+        this.setState({ seriesFiltradas: seriesFiltradas })
     }
     render() {
         return (
             <div class="container">
                 <Header />
                 <input onChange={this.manejarInput} type="text" class="" name="searchData" placeholder="Buscar..." value={this.state.inputValue} />
-                <h2 class="alert alert-primary"> {this.props.match.params.tipo == 'popular' ? 'Popular movies this week' : 'Movies now playing'} </h2>
-                {this.state.loader ? <p>Cargando...</p> : <ListaCard data={this.state.inputValue.length == 0 ? this.state.movies : this.state.moviesFiltradas} tipo='movie' />}
+                <h2 class="alert alert-primary"> {this.props.match.params.tipo == 'popular' ? 'Popular TV shows this week' : 'TV shows airing today'} </h2>
+                {this.state.loader ? <p>Cargando...</p> : <ListaCard data={this.state.inputValue.length == 0 ? this.state.series : this.state.seriesFiltradas} tipo='tv' />}
                 
                 <button onClick={() => this.cargarMas()} class='btn btn-primary'>Cargar más</button>
             </div>
@@ -62,4 +62,4 @@ class Movies extends Component {
     }
 }
 
-export default Movies;
+export default Series;

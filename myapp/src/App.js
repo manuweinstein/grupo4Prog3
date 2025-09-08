@@ -4,6 +4,7 @@ import { Switch, Route} from 'react-router-dom'
 import NotFound from './Screens/NotFound/NotFound';
 import Home from './Screens/Home/Home';
 import Movies from './Screens/Movies/Movies';
+import Series from './Screens/Series/Series';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path='/' component={Home} exact={true} />
 
         <Route path='/movies/:tipo' component={Movies} exact={true} />
-
+        <Route path='/series/:tipo' component={Series} exact={true} />
         <Route path='' component={NotFound} exact={true} />
       </Switch>
     </div>

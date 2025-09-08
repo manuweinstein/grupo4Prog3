@@ -57,10 +57,10 @@ class Home extends Component{
                 <h2 class="alert alert-primary">Movies now playing <button class='btn btn-primary'><Link to='/movies/now_playing'>Ver mas</Link></button></h2>
                 {this.state.loadermoviesNow ? <p>Cargando...</p> :  <ListaCard tipo='movie' data={this.state.moviesNow.slice(0,5)} /> }
 
-                <h2 class="alert alert-primary">Popular TV shows this week</h2>
+                <h2 class="alert alert-primary">Popular TV shows this week <button class='btn btn-primary'><Link to='/series/popular'>Ver mas</Link></button></h2>
                 {this.state.loaderseriePopular ? <p>Cargando...</p> :  <ListaCard tipo='tv' data={this.state.seriePopular.slice(0,5)} /> }
 
-                <h2 class="alert alert-primary">TV shows airing today</h2>
+                <h2 class="alert alert-primary">TV shows airing today <button class='btn btn-primary'><Link to='/series/airing_today'>Ver mas</Link></button></h2>
                 {this.state.loaderserieToday ? <p>Cargando...</p> :  <ListaCard tipo='tv' data={this.state.serieToday.slice(0,5)} /> }
 
             </div>
