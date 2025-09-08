@@ -1,0 +1,12 @@
+.single-card {
+    width: 19%;
+}
+
+.cardBody {
+    margin-top: 20px;
+}
+
+.single-card .card-text{
+    height: 100px;
+    overflow: hidden;
+}
