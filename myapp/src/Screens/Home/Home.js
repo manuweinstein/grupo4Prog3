@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Header from "../../Components/Header/Header";
 import ListaCard from "../../Components/ListaCard/ListaCard";
 import {Link} from 'react-router-dom'

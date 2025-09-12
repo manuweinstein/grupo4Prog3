@@ -1,6 +1,6 @@
 import { Component } from "react";
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Header.css'
 
 
@@ -20,13 +20,13 @@ class Header extends Component {
                 <nav>
                     <ul class="nav nav-tabs my-4">
                         <li class="nav-item">
-                            <Link to='/' > 
-                            Home
+                            <Link to='/' >
+                                Home
                             </Link>
                         </li>
                         <li class="nav-item">
                             <Link to='/movies/:tipo'>
-                            Peliculas
+                                Peliculas
                             </Link>
                         </li>
                         <li class="nav-item">
@@ -36,9 +36,11 @@ class Header extends Component {
                             <a class="nav-link" href="favorites.html">Favoritas</a>
                         </li>
                     </ul>
-                    <form class="search-form" action="results.html" method="get">
-                        <input type="text" class="" name="searchData" placeholder="Buscar..." value="" />
-                        <button type="submit" class="btn btn-success btn-sm">Buscar</button>
+                    <form className="search-form" action="/search" method="get">
+                        <input type="text" className="" name="search" placeholder="Buscar..." />
+                        <button type="submit" className="btn btn-success btn-sm">Buscar</button>
+                        <label>movie</label><input type="radio" name="tipo" value="movie" />
+                        <label>serie</label><input type="radio" name="tipo" value="tv" />
                     </form>
                 </nav>
             </React.Fragment>
