@@ -8,14 +8,24 @@ class Card extends Component {
         super(props);
         this.state = {
             descripcion: "Ver descripcion completa",
-            show: false
+            show: false,
+            esFavorito: false
         }
     }
 
-    componentDidMount() {
+    componentDidMount(){
         console.log(this.props);
-
+        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosParse = JSON.parse(favoritosLocalStorage)
+        if (favoritosParse !== null){
+            if (favoritosParse.includes(this.props.id)) {
+                this.state({
+                    esFavorito: true
+                })
+            }
+        }
     }
+
     changeDescr() {
         if (this.state.show == false) {
             this.setState({ show: true, descripcion: "Ocultar descripcion" })
@@ -24,9 +34,61 @@ class Card extends Component {
             this.setState({ show: false, descripcion: "Ver descripcion completa" })
         }
     }
+
+    agregarAfavoritos(id) {
+        console.log(id, 'id desde funcion');
+        let favoritos =[]
+        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosParse = JSON.parse(favoritosLocalStorage)
+        
+        if(favoritosParse !== null){
+            favoritosParse.push(id)
+            let favoritosToString = JSON.stringify(favoritosParse)
+            localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: true
+            })
+        } else {
+            console.log(id);
+            favoritos.push(id)
+            let favoritosToString = JSON.stringify(favoritos)
+            localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: true
+            })
+        }
+
+
+    }
+
+    quitarDeFavoritos(id){
+        let favoritos =[]
+        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosParse = JSON.parse(favoritosLocalStorage)
+        
+        if(favoritosParse !== null){
+            favoritosParse = favoritosParse.filter(fav => fav !== id)
+            let favoritosToString = JSON.stringify(favoritosParse)
+            localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: false
+            })
+        } else {
+            favoritosParse = favoritosParse.filter(fav => fav !== id)
+            let favoritosToString = JSON.stringify(favoritos)
+            localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: false
+            })
+        }
+
+
+        console.log(favoritosLocalStorage)
+    }
+
     render() {
         const { data, tipo } = this.props;
-        console.log(this.props.data.overview)
+        console.log(this.props.data.id)
         return (
             <article className="single-card">
                 <img src={`https://image.tmdb.org/t/p/w500/${this.props.data.poster_path}`} className="card-img-top" alt="..." />
@@ -43,13 +105,27 @@ class Card extends Component {
                         Ver más
                     </Link>
 
-                    <Link
+                    {/*<Link
                         to="/favoritas"
                         className="btn alert-primary"
                         aria-label="Ver favoritas"
                     >
-                        🩶
-                    </Link>
+                        
+                    </Link> */}
+                    <button>
+                        {
+                            this.state.esFavorito ?
+                            <button onClick={() => this.quitarDeFavoritos(this.props.data.id)}>
+                                Quitar de favoritos
+                            </button>
+                            :
+                            <button onClick={() => this.agregarAfavoritos(this.props.data.id)}> 
+                                Agregar a favoritos
+                            </button>
+                            
+                        }
+                    </button>
+                    
                 </div>
             </article>
         )

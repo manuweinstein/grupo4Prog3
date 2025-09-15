@@ -13,7 +13,8 @@ class Detalle extends Component {
             movie: {},
             loadingMovie: true,
             serie: {},
-            loadingSerie: true
+            loadingSerie: true,
+            esFavorito: false
         }
     }
 
@@ -34,6 +35,54 @@ class Detalle extends Component {
                     this.setState({ serie: data, loadingSerie: false }, () => console.log(this.state))
                 })
         }
+
+        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosParse = JSON.parse(favoritosLocalStorage)
+        if (favoritosParse !== null){
+            if (favoritosParse.includes(this.props.id)) {
+                this.state({
+                    esFavorito: true
+                })
+            }
+        }
+    }
+
+    agregarAfavoritos(id) {
+        let favoritos =[]
+        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosParse = JSON.parse(favoritosLocalStorage)
+        
+        if(favoritosParse !== null){
+            favoritosParse.push(id)
+            let favoritosToString = JSON.stringify(favoritosParse)
+            localStorage.setItem('favoritos', favoritosToString)
+        } else {
+            favoritos.push(id)
+            let favoritosToString = JSON.stringify(favoritosParse)
+            localStorage.setItem('favoritos', favoritosToString)
+        }
+
+
+        console.log(favoritosLocalStorage)
+    }
+
+    quitarDeFavoritos(id){
+        let favoritos =[]
+        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosParse = JSON.parse(favoritosLocalStorage)
+        
+        if(favoritosParse !== null){
+            favoritosParse.filter(id)
+            let favoritosToString = JSON.stringify(favoritosParse)
+            localStorage.setItem('favoritos', favoritosToString)
+        } else {
+            favoritos.filter(id)
+            let favoritosToString = JSON.stringify(favoritos)
+            localStorage.setItem('favoritos', favoritosToString)
+        }
+
+
+        console.log(favoritosLocalStorage)
     }
 
     render() {
@@ -77,6 +126,19 @@ class Detalle extends Component {
                             </section>
                         </React.Fragment>
                     )}
+                    <button>
+                        {
+                            this.state.esFavorito ?
+                            <button onClick={() => this.quitarDeFavoritos(this.props.id)}>
+                                ♡
+                            </button>
+                            :
+                            <button onClick={() => this.agregarAfavoritos(this.props.id)}> 
+                                🩶
+                            </button>
+                            
+                        }
+                    </button>
 
             <Footer/>
 
