@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Header from "../../Components/Header/Header";
 import ListaCard from "../../Components/ListaCard/ListaCard";
+import Footer from "../../Components/Footer/Footer";
+import './Search.css'
 
 let apiKey = '5ea8a9872dea100ef148d0562094a5b4'
 
@@ -29,13 +31,21 @@ class Search extends Component {
             <Header />
             
              <h2> Resultados de búsqueda </h2>
-    
+             {this.state.cargando ? (
+                    <p>Cargando...</p>
+                ) : this.state.resultados.length === 0 ? (
+                    <p className="noresul">No hay resultados</p>
+                ) : (
+                    <ListaCard data={this.state.resultados} tipo={this.state.tipo} />
+                )}
             {this.state.cargando
               ? <p>Cargando...</p>
               : <ListaCard data={this.state.resultados} tipo={this.state.tipo} />
             }
+
+            <Footer />
             </React.Fragment>
-          
+
     
         )
 }

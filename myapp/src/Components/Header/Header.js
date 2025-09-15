@@ -19,24 +19,24 @@ class Header extends Component {
             <img src="/logo.png" alt="TresientosTres" className="site-logo" />
             </Link>
                 <nav>
-                    <ul class="nav nav-tabs my-4">
-                        <li class="nav-item">
+                    <ul className="nav nav-tabs my-4">
+                        <li className="nav-item">
                             <Link to='/' >
                                 Home
                             </Link>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to='/movies/popular'>
                                 Peliculas
                             </Link>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to='/series/popular'>
                             Series
                             </Link>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="favorites.html">Favoritas</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="favorites.html">Favoritas</a>
                         </li>
                     </ul>
                     <form className="search-form" action="/search" method="get">

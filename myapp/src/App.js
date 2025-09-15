@@ -18,7 +18,7 @@ function App() {
         <Route path='/series/:tipo' component={Series}/>
         <Route path='/search' component={Search}/>
         <Route path='/detalle/:tipo/:id' component={Detalle}/>
-        <Route path='' component={NotFound} exact={true} />
+        <Route path='' component={NotFound} />
         
       </Switch>
     </div>

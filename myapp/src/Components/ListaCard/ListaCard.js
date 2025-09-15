@@ -18,7 +18,7 @@ class ListaCard extends Component{
 
     render(){
         return(
-            <section class="row cards" id="movies">
+            <section className="row cards" id="movies">
                 {this.props.data.map((unItem, idx) => <Card tipo={this.props.tipo} key={idx} data={unItem} />)}
 
 

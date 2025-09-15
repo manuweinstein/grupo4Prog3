@@ -2,6 +2,7 @@ import { Component } from "react";
 import Header from "../../Components/Header/Header";
 import ListaCard from "../../Components/ListaCard/ListaCard";
 import './Movies.css'
+import Footer from "../../Components/Footer/Footer";
 
 let apiKey = '5ea8a9872dea100ef148d0562094a5b4'
 
@@ -52,13 +53,15 @@ class Movies extends Component {
     }
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <Header />
-                <input onChange={this.manejarInput} type="text" class="" name="searchData" placeholder="Buscar..." value={this.state.inputValue} />
-                <h2 class="alert alert-primary"> {this.props.match.params.tipo == 'popular' ? 'Popular movies this week' : 'Movies now playing'} </h2>
+                <input onChange={this.manejarInput} type="text" className="" name="searchData" placeholder="Buscar..." value={this.state.inputValue} />
+                <h2 className="alert alert-primary"> {this.props.match.params.tipo == 'popular' ? 'Popular movies this week' : 'Movies now playing'} </h2>
                 {this.state.loader ? <p>Cargando...</p> : <ListaCard data={this.state.inputValue.length == 0 ? this.state.movies : this.state.moviesFiltradas} tipo='movie' />}
                 
-                <button onClick={() => this.cargarMas()} class='btn btn-primary'>Cargar más</button>
+                <button onClick={() => this.cargarMas()} className='btn btn-primary'>Cargar más</button>
+
+            <Footer />
             </div>
         )
     }
