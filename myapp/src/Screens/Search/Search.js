@@ -17,9 +17,10 @@ class Search extends Component {
     componentDidMount() {
         const params = new URLSearchParams(this.props.location.search);
         const buscando = params.get('search');
-        fetch(`https://api.themoviedb.org/3/search/movie?query=${buscando}&api_key=${apiKey}`)
+        const tipo = params.get('tipo') === 'tv' ? 'tv' : 'movie';
+        fetch(`https://api.themoviedb.org/3/search/${tipo}?query=${buscando}&api_key=${apiKey}`)
             .then(resp => resp.json())
-            .then(data => this.setState({ resultados: data.results, cargando: false }))
+            .then(data => this.setState({ resultados: data.results, cargando: false, tipo:tipo }))
             .catch(err => console.log(err));
     }
     render() {
