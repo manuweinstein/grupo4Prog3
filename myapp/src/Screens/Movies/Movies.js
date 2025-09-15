@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Header from "../../Components/Header/Header";
 import ListaCard from "../../Components/ListaCard/ListaCard";
+import './Movies.css'
 
 let apiKey = '5ea8a9872dea100ef148d0562094a5b4'
 
@@ -17,11 +18,12 @@ class Movies extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
+       // console.log(this.props);
 
         fetch(`https://api.themoviedb.org/3/movie/${this.props.match.params.tipo}?api_key=${apiKey}`)
             .then(res => res.json())
             .then(data => {
+                //console.log(data)
                 this.setState({ movies: data.results, loader: false })
             })
     }

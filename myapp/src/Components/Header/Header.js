@@ -15,8 +15,9 @@ class Header extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>UdeSA Movies</h1>
-
+            <Link to="/" className="brand">
+            <img src="/logo.png" alt="TresientosTres" className="site-logo" />
+            </Link>
                 <nav>
                     <ul class="nav nav-tabs my-4">
                         <li class="nav-item">
@@ -25,12 +26,14 @@ class Header extends Component {
                             </Link>
                         </li>
                         <li class="nav-item">
-                            <Link to='/movies/:tipo'>
+                            <Link to='/movies/popular'>
                                 Peliculas
                             </Link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="series.html">Series</a>
+                            <Link to='/series/popular'>
+                            Series
+                            </Link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="favorites.html">Favoritas</a>

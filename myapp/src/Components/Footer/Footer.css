@@ -1,0 +1,29 @@
+footer {
+    background: #fffaf4;                
+    border-top: 1px solid #e9dccb;      
+    color: #4a3f35;                     
+    padding: 12px 16px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;                      
+    gap: 0;                              
+  }
+  
+  footer p {
+    margin: 4px 0;
+    padding: 2px 12px;                    
+    font-weight: 500;                     
+    line-height: 1.4;
+  }
+  
+  footer p + p {
+    border-left: 1px solid #e0d6cb;       
+  }
+
+  @media (max-width: 480px) {
+    footer { padding: 10px 12px; }
+    footer p { padding: 2px 10px; }
+  }
+  

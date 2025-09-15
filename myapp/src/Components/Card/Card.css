@@ -1,12 +1,105 @@
 .single-card {
-    width: 19%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e1d7c5;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.05);
+  height: 100%;
+}
+.single-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
 }
 
-.cardBody {
-    margin-top: 20px;
+.single-card .card-img-top {
+  width: 100%;
+  max-width: 180px;
+  height: 260px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
-.single-card .card-text{
-    height: 100px;
-    overflow: hidden;
+.single-card .cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.single-card .card-title {
+  margin: 2px 0 4px;
+  font-size: 1rem;
+  color: #3f3a34;
+  text-align: center;
+  min-height: 2.4em;
+}
+
+.single-card .cardBody p {
+  margin: 0 0 8px;
+  font-size: .95rem;
+  line-height: 1.35;
+  color: #6e6256;
+  text-align: center;
+}
+
+.single-card .cardBody p.card-text {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.single-card .cardBody > button,
+.single-card .cardBody > a {
+  margin-top: 2px;
+}
+.single-card .cardBody > a + a {
+  margin-left: 8px;
+}
+
+.single-card .cardBody > a.btn {
+  background: #b8a591;
+  border: 1px solid #c0ab95;
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+
+.single-card .cardBody > a.alert-primary {
+  display: inline-flex;
+  margin-left: 8px;
+  margin-top: 0;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  background: #f2ece2;
+  border: 1px solid #e1d7c5;
+  color: #6e6256;
+  box-shadow: none;
+}
+.single-card .cardBody > a.alert-primary:hover {
+  background: #ebe3d4;
+}
+
+.single-card .cardBody > button {
+  background: transparent;
+  border: 1px solid #e1d7c5;
+  color: #6e6256;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+}
+.single-card .cardBody > button:hover {
+  background: #f7f2ea;
+}
+
+@media (max-width: 768px) {
+  .single-card .card-img-top {
+    max-width: 140px;
+    height: 210px;
+  }
 }

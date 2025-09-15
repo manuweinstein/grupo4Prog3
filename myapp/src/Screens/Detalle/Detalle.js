@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "../../Components/Header/Header"; 
 import Card from "../../Components/Card/Card"; 
+import './Detalle.css'
 
 const apiKey = "42737f60c529bfe7e9586db8cb132a1c";
 

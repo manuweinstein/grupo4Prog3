@@ -1,0 +1,84 @@
+.detalle {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.nombrePelicula {
+  margin: 12px auto 16px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3f3a34;
+  border-bottom: 1px solid #e1d7c5;
+  padding-bottom: 8px;
+}
+
+.detalle .single-card {
+  max-width: 460px;
+  margin: 12px auto 0;
+  background: #fff;
+  border: 1px solid #e1d7c5;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.detalle .single-card .card-img-top {
+  max-width: 260px;
+  height: 380px;
+  border-radius: 14px;
+}
+
+.detalle .single-card .card-title {
+  display: none;
+}
+
+.detalle .single-card .cardBody > p {
+  max-width: 68ch;
+  text-align: center;
+  margin: 10px auto 8px;
+  font-size: .98rem;
+  line-height: 1.5;
+  color: #6e6256;
+}
+
+.detalle .single-card .cardBody > p.card-text {
+  max-height: 120px;
+  overflow: hidden;
+}
+
+.detalle .single-card .cardBody {
+  align-items: center;
+  gap: 10px;
+}
+
+.detalle .single-card .cardBody > button,
+.detalle .single-card .cardBody > a {
+  margin-top: 4px;
+}
+
+.loading-container {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f2ea;
+}
+
+.loader .Subtitulos.loading {
+  color: #3f3a34;
+  font-size: 1.2rem;
+}
+
+.loader img {
+  width: 72px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .nombrePelicula { font-size: 1.6rem; }
+  .detalle .single-card { max-width: 360px; padding: 14px; }
+  .detalle .single-card .card-img-top { max-width: 200px; height: 300px; }
+}
