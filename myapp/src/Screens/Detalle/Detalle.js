@@ -48,6 +48,7 @@ class Detalle extends Component {
     }
 
     agregarAfavoritos(id) {
+        console.log(id, 'id desde funcion');
         let favoritos =[]
         let favoritosLocalStorage = localStorage.getItem('favoritos')
         let favoritosParse = JSON.parse(favoritosLocalStorage)
@@ -56,14 +57,20 @@ class Detalle extends Component {
             favoritosParse.push(id)
             let favoritosToString = JSON.stringify(favoritosParse)
             localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: true
+            })
         } else {
+            console.log(id);
             favoritos.push(id)
-            let favoritosToString = JSON.stringify(favoritosParse)
+            let favoritosToString = JSON.stringify(favoritos)
             localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: true
+            })
         }
 
 
-        console.log(favoritosLocalStorage)
     }
 
     quitarDeFavoritos(id){
@@ -72,13 +79,19 @@ class Detalle extends Component {
         let favoritosParse = JSON.parse(favoritosLocalStorage)
         
         if(favoritosParse !== null){
-            favoritosParse.filter(id)
+            favoritosParse = favoritosParse.filter(fav => fav !== id)
             let favoritosToString = JSON.stringify(favoritosParse)
             localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: false
+            })
         } else {
-            favoritos.filter(id)
+            favoritosParse = favoritosParse.filter(fav => fav !== id)
             let favoritosToString = JSON.stringify(favoritos)
             localStorage.setItem('favoritos', favoritosToString)
+            this.setState({
+                esFavorito: false
+            })
         }
 
 
@@ -125,16 +138,18 @@ class Detalle extends Component {
                                 <img className="col-md-6" src={`https://image.tmdb.org/t/p/w500/${this.state.serie.poster_path}`} alt="" />
                             </section>
                         </React.Fragment>
+                        
                     )}
+                    
                     <button>
                         {
                             this.state.esFavorito ?
-                            <button onClick={() => this.quitarDeFavoritos(this.props.id)}>
-                                ♡
+                            <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
+                                Quitar de favoritos
                             </button>
                             :
-                            <button onClick={() => this.agregarAfavoritos(this.props.id)}> 
-                                🩶
+                            <button onClick={() => this.agregarAfavoritos(this.props.match.params.id)}> 
+                                Agregar a favoritos
                             </button>
                             
                         }

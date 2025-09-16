@@ -1,6 +1,6 @@
-import { Component } from "react";
+import {Component} from "react";
 import './Card.css'
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import {Link} from "react-router-dom/cjs/react-router-dom.min";
 
 
 class Card extends Component {
