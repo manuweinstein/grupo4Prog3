@@ -170,11 +170,11 @@ class Detalle extends Component {
                                     {
                                         this.state.esFavorito ?
                                             <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
-                                                Quitar de favoritos
+                                                ♡ Quitar de favoritos
                                             </button>
                                             :
                                             <button onClick={() => this.agregarAfavoritos(this.props.match.params.id)}>
-                                                Agregar a favoritos
+                                                ♡ Agregar a favoritos
                                             </button>
 
                                     }
