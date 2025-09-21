@@ -19,6 +19,12 @@ class Detalle extends Component {
     }
 
     componentDidMount() {
+        let variableLocal = '';
+        if(this.props.match.params.tipo == 'movie'){
+            variableLocal='peliculasFavoritas'
+        } else {
+            variableLocal='seriesFavoritas'
+        }
         console.log(this.props);
 
         if (this.props.match.params.tipo == 'movie') {
@@ -35,12 +41,12 @@ class Detalle extends Component {
                     this.setState({ serie: data, loadingSerie: false }, () => console.log(this.state))
                 })
         }
-
-        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        
+        let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
         if (favoritosParse !== null){
-            if (favoritosParse.includes(this.props.id)) {
-                this.state({
+            if (favoritosParse.includes(this.props.match.params.id)) {
+                this.setState({
                     esFavorito: true
                 })
             }
@@ -48,15 +54,21 @@ class Detalle extends Component {
     }
 
     agregarAfavoritos(id) {
+        let variableLocal = '';
+        if(this.props.match.params.tipo == 'movie'){
+            variableLocal='peliculasFavoritas'
+        } else {
+            variableLocal='seriesFavoritas'
+        }
         console.log(id, 'id desde funcion');
         let favoritos =[]
-        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
         
         if(favoritosParse !== null){
             favoritosParse.push(id)
             let favoritosToString = JSON.stringify(favoritosParse)
-            localStorage.setItem('favoritos', favoritosToString)
+            localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
                 esFavorito: true
             })
@@ -64,7 +76,7 @@ class Detalle extends Component {
             console.log(id);
             favoritos.push(id)
             let favoritosToString = JSON.stringify(favoritos)
-            localStorage.setItem('favoritos', favoritosToString)
+            localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
                 esFavorito: true
             })
@@ -74,21 +86,27 @@ class Detalle extends Component {
     }
 
     quitarDeFavoritos(id){
+        let variableLocal = '';
+        if(this.props.match.params.tipo == 'movie'){
+            variableLocal='peliculasFavoritas'
+        } else {
+            variableLocal='seriesFavoritas'
+        }
         let favoritos =[]
-        let favoritosLocalStorage = localStorage.getItem('favoritos')
+        let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
         
         if(favoritosParse !== null){
             favoritosParse = favoritosParse.filter(fav => fav !== id)
             let favoritosToString = JSON.stringify(favoritosParse)
-            localStorage.setItem('favoritos', favoritosToString)
+            localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
                 esFavorito: false
             })
         } else {
             favoritosParse = favoritosParse.filter(fav => fav !== id)
             let favoritosToString = JSON.stringify(favoritos)
-            localStorage.setItem('favoritos', favoritosToString)
+            localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
                 esFavorito: false
             })
