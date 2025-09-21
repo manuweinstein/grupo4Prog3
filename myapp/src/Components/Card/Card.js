@@ -113,12 +113,12 @@ class Card extends Component {
                 <div className="cardBody">
                     <h5 className="card-title">{this.props.tipo == 'movie' ? this.props.data.title : this.props.data.name}</h5>
                     <p className={this.state.show == false ? "card-text" : ""}> {this.props.data.overview}</p>
-                    <button
+                    <button className="btn-des"
                         onClick={() => this.changeDescr()}
                     > {this.state.descripcion} </button>
                     <Link
                         to={`/detalle/${tipo}/${data.id}`}
-                        className="btn btn-primary"
+                        className="btn-vermas"
                     >
                         Ver más
                     </Link>
@@ -130,15 +130,15 @@ class Card extends Component {
                     >
                         
                     </Link> */}
-                    <button>
+                    <button className="btn-favs">
                         {
                             this.state.esFavorito ?
                             <button onClick={() => this.quitarDeFavoritos(this.props.data.id)}>
-                                Quitar de favoritos
+                            ♡ Quitar de favoritos
                             </button>
                             :
                             <button onClick={() => this.agregarAfavoritos(this.props.data.id)}> 
-                                Agregar a favoritos
+                            ♡ Agregar a favoritos
                             </button>
                             
                         }

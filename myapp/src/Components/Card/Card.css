@@ -6,11 +6,12 @@
   border: 1px solid #e1d7c5;
   border-radius: 16px;
   padding: 14px;
-  box-shadow: 0 1px 6px rgba(0,0,0,.05);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .05);
   height: 100%;
 }
+
 .single-card:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
 }
 
 .single-card .card-img-top {
@@ -50,15 +51,17 @@
   overflow: hidden;
 }
 
-.single-card .cardBody > button,
-.single-card .cardBody > a {
-  margin-top: 2px;
+.btn-des {
+  background: transparent;
+  border: 1px solid #e1d7c5;
+  color: #6e6256;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
 }
-.single-card .cardBody > a + a {
-  margin-left: 8px;
-}
+.btn-des:hover { background: #f7f2ea; }
 
-.single-card .cardBody > a.btn {
+.btn-vermas {
   background: #b8a591;
   border: 1px solid #c0ab95;
   color: #fff;
@@ -67,34 +70,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+  cursor: pointer;
+  text-decoration: none; 
+  font-size: .95rem;
 }
 
-.single-card .cardBody > a.alert-primary {
-  display: inline-flex;
-  margin-left: 8px;
-  margin-top: 0;
-  padding: 6px 10px;
-  border-radius: 9999px;
-  background: #f2ece2;
-  border: 1px solid #e1d7c5;
+.btn-vermas:hover {
+  background: #a8927d;
+  text-decoration: none; 
   color: #6e6256;
-  box-shadow: none;
-}
-.single-card .cardBody > a.alert-primary:hover {
-  background: #ebe3d4;
-}
-
-.single-card .cardBody > button {
-  background: transparent;
-  border: 1px solid #e1d7c5;
-  color: #6e6256;
-  border-radius: 12px;
-  padding: 8px 12px;
-  margin-bottom: 6px;
-}
-.single-card .cardBody > button:hover {
-  background: #f7f2ea;
 }
 
 @media (max-width: 768px) {
@@ -102,4 +87,35 @@
     max-width: 140px;
     height: 210px;
   }
+}
+
+.btn-favs {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+
+.btn-favs button {
+  border: 1px solid #cdbda7;
+  background: #f6f1e7;
+  color: #5b5046;
+  border-radius: 9999px;
+  padding: 8px 14px;
+  font-size: .95rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+
+.btn-favs button:hover {
+  background: #efe7da;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
 }

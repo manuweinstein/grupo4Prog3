@@ -20,10 +20,10 @@ class Detalle extends Component {
 
     componentDidMount() {
         let variableLocal = '';
-        if(this.props.match.params.tipo == 'movie'){
-            variableLocal='peliculasFavoritas'
+        if (this.props.match.params.tipo == 'movie') {
+            variableLocal = 'peliculasFavoritas'
         } else {
-            variableLocal='seriesFavoritas'
+            variableLocal = 'seriesFavoritas'
         }
         console.log(this.props);
 
@@ -34,17 +34,17 @@ class Detalle extends Component {
                     this.setState({ movie: data, loadingMovie: false }, () => console.log(this.state))
                 })
         } else if (this.props.match.params.tipo == 'tv') {
-           
+
             fetch(`https://api.themoviedb.org/3/tv/${this.props.match.params.id}?api_key=${api_key}`)
                 .then(res => res.json())
                 .then(data => {
                     this.setState({ serie: data, loadingSerie: false }, () => console.log(this.state))
                 })
         }
-        
+
         let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
-        if (favoritosParse !== null){
+        if (favoritosParse !== null) {
             if (favoritosParse.includes(this.props.match.params.id)) {
                 this.setState({
                     esFavorito: true
@@ -55,17 +55,17 @@ class Detalle extends Component {
 
     agregarAfavoritos(id) {
         let variableLocal = '';
-        if(this.props.match.params.tipo == 'movie'){
-            variableLocal='peliculasFavoritas'
+        if (this.props.match.params.tipo == 'movie') {
+            variableLocal = 'peliculasFavoritas'
         } else {
-            variableLocal='seriesFavoritas'
+            variableLocal = 'seriesFavoritas'
         }
         console.log(id, 'id desde funcion');
-        let favoritos =[]
+        let favoritos = []
         let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
-        
-        if(favoritosParse !== null){
+
+        if (favoritosParse !== null) {
             favoritosParse.push(id)
             let favoritosToString = JSON.stringify(favoritosParse)
             localStorage.setItem(variableLocal, favoritosToString)
@@ -85,18 +85,18 @@ class Detalle extends Component {
 
     }
 
-    quitarDeFavoritos(id){
+    quitarDeFavoritos(id) {
         let variableLocal = '';
-        if(this.props.match.params.tipo == 'movie'){
-            variableLocal='peliculasFavoritas'
+        if (this.props.match.params.tipo == 'movie') {
+            variableLocal = 'peliculasFavoritas'
         } else {
-            variableLocal='seriesFavoritas'
+            variableLocal = 'seriesFavoritas'
         }
-        let favoritos =[]
+        let favoritos = []
         let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
-        
-        if(favoritosParse !== null){
+
+        if (favoritosParse !== null) {
             favoritosParse = favoritosParse.filter(fav => fav !== id)
             let favoritosToString = JSON.stringify(favoritosParse)
             localStorage.setItem(variableLocal, favoritosToString)
@@ -136,7 +136,21 @@ class Detalle extends Component {
                                     <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno: </strong>{this.state.movie.release_date}</p>
                                     <p className="mt-0 mb-0 length"><strong>Duración: </strong>{this.state.movie.runtime}</p>
                                     <p className="mt-0" id="votes"><strong>Puntuación: </strong>{this.state.movie.vote_average}</p>
+                                    <button>
+                                        {
+                                            this.state.esFavorito ?
+                                                <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
+                                                    ♡ Quitar de favoritos
+                                                </button>
+                                                :
+                                                <button onClick={() => this.agregarAfavoritos(this.props.match.params.id)}>
+                                                    ♡ Agregar a favoritos
+                                                </button>
+
+                                        }
+                                    </button>
                                 </section>
+
                             </section>
                         </React.Fragment>
                     )
@@ -152,28 +166,27 @@ class Detalle extends Component {
                                     <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno: </strong>{this.state.serie.first_air_date}</p>
                                     <p className="mt-0 mb-0 length"><strong>Numero de Capitulos: </strong>{this.state.serie.number_of_episodes} </p>
                                     <p className="mt-0" id="votes"><strong>Temporadas: </strong>{this.state.serie.number_of_seasons}</p>
+                                    <button>
+                                    {
+                                        this.state.esFavorito ?
+                                            <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
+                                                Quitar de favoritos
+                                            </button>
+                                            :
+                                            <button onClick={() => this.agregarAfavoritos(this.props.match.params.id)}>
+                                                Agregar a favoritos
+                                            </button>
+
+                                    }
+                                </button>
                                 </section>
                                 <img className="col-md-6" src={`https://image.tmdb.org/t/p/w500/${this.state.serie.poster_path}`} alt="" />
                             </section>
                         </React.Fragment>
-                        
-                    )}
-                    
-                    <button>
-                        {
-                            this.state.esFavorito ?
-                            <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
-                                Quitar de favoritos
-                            </button>
-                            :
-                            <button onClick={() => this.agregarAfavoritos(this.props.match.params.id)}> 
-                                Agregar a favoritos
-                            </button>
-                            
-                        }
-                    </button>
 
-            <Footer/>
+                    )}
+
+                <Footer />
 
             </div>
         )
