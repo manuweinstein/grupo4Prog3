@@ -130,7 +130,7 @@ class Card extends Component {
                     >
                         
                     </Link> */}
-                    <button className="btn-favs">
+                    <div className="btn-favs">
                         {
                             this.state.esFavorito ?
                             <button onClick={() => this.quitarDeFavoritos(this.props.data.id)}>
@@ -142,7 +142,7 @@ class Card extends Component {
                             </button>
                             
                         }
-                    </button>
+                    </div>
                     
                 </div>
             </article>

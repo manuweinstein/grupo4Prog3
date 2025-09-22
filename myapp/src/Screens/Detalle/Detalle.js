@@ -3,6 +3,7 @@ import Header from "../../Components/Header/Header";
 import React from "react";
 import './Detalle.css'
 import Footer from "../../Components/Footer/Footer";
+import Favoritos from "../Favoritos/Favoritos";
 
 let api_key = "5ea8a9872dea100ef148d0562094a5b4"
 
@@ -44,13 +45,13 @@ class Detalle extends Component {
 
         let favoritosLocalStorage = localStorage.getItem(variableLocal)
         let favoritosParse = JSON.parse(favoritosLocalStorage)
+        console.log(this.props.match.params.id)
+        let idActual = Number(this.props.match.params.id);
         if (favoritosParse !== null) {
-            if (favoritosParse.includes(this.props.match.params.id)) {
-                this.setState({
-                    esFavorito: true
-                })
-            }
-        }
+        if (favoritosParse.includes(idActual)) {
+          this.setState({ esFavorito: true })
+      }
+  }
     }
 
     agregarAfavoritos(id) {
@@ -66,7 +67,7 @@ class Detalle extends Component {
         let favoritosParse = JSON.parse(favoritosLocalStorage)
 
         if (favoritosParse !== null) {
-            favoritosParse.push(id)
+            favoritosParse.push(Number(id))
             let favoritosToString = JSON.stringify(favoritosParse)
             localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
@@ -74,7 +75,7 @@ class Detalle extends Component {
             })
         } else {
             console.log(id);
-            favoritos.push(id)
+            favoritos.push(Number(id))
             let favoritosToString = JSON.stringify(favoritos)
             localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
@@ -97,14 +98,14 @@ class Detalle extends Component {
         let favoritosParse = JSON.parse(favoritosLocalStorage)
 
         if (favoritosParse !== null) {
-            favoritosParse = favoritosParse.filter(fav => fav !== id)
+            favoritosParse = favoritosParse.filter(fav => fav !== Number(id))
             let favoritosToString = JSON.stringify(favoritosParse)
             localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
                 esFavorito: false
             })
         } else {
-            favoritosParse = favoritosParse.filter(fav => fav !== id)
+            favoritosParse = favoritosParse.filter(fav => fav !== Number(id))
             let favoritosToString = JSON.stringify(favoritos)
             localStorage.setItem(variableLocal, favoritosToString)
             this.setState({
@@ -120,7 +121,7 @@ class Detalle extends Component {
 
         return (
 
-            <div div className="container">
+            <div className="container">
 
                 <Header />
                 {this.props.match.params.tipo == 'movie' ?
@@ -136,7 +137,7 @@ class Detalle extends Component {
                                     <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno: </strong>{this.state.movie.release_date}</p>
                                     <p className="mt-0 mb-0 length"><strong>Duración: </strong>{this.state.movie.runtime}</p>
                                     <p className="mt-0" id="votes"><strong>Puntuación: </strong>{this.state.movie.vote_average}</p>
-                                    <button>
+                                    <div className="btn-deta">
                                         {
                                             this.state.esFavorito ?
                                                 <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
@@ -148,7 +149,7 @@ class Detalle extends Component {
                                                 </button>
 
                                         }
-                                    </button>
+                                    </div>
                                 </section>
 
                             </section>
@@ -166,7 +167,7 @@ class Detalle extends Component {
                                     <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno: </strong>{this.state.serie.first_air_date}</p>
                                     <p className="mt-0 mb-0 length"><strong>Numero de Capitulos: </strong>{this.state.serie.number_of_episodes} </p>
                                     <p className="mt-0" id="votes"><strong>Temporadas: </strong>{this.state.serie.number_of_seasons}</p>
-                                    <button>
+                                    <div className="btn-deta">
                                     {
                                         this.state.esFavorito ?
                                             <button onClick={() => this.quitarDeFavoritos(this.props.match.params.id)}>
@@ -178,7 +179,7 @@ class Detalle extends Component {
                                             </button>
 
                                     }
-                                </button>
+                                </div>
                                 </section>
                                 <img className="col-md-6" src={`https://image.tmdb.org/t/p/w500/${this.state.serie.poster_path}`} alt="" />
                             </section>
